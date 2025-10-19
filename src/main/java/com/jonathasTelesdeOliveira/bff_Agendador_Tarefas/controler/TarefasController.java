@@ -1,10 +1,10 @@
 package com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.controler;
 
 
-import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.AgendadorTarefaService;
+import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.Enums.StatusNotificacaoEnum;
+import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.TarefaService;
 import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.dto.in.TarefaDTORequest;
 import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.dto.out.TarefaDTOResponse;
-import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.infraestruture.Enums.StatusNotificacaoEnum;
 import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.infraestruture.security.SecurityConfig;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -23,20 +23,22 @@ import java.util.List;
 @RequiredArgsConstructor
 @Tag(name = "Tarefas", description = "Cadasstra tarefas de usuário")
 @SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
-public class AgendadorTarefaController {
+public class TarefasController {
 
-    private final AgendadorTarefaService agendadorTarefaService;
+    private final TarefaService agendadorTarefaService;
 
+    @Operation(summary = "Salvar Tarefas de Usuários", description = "Cria uma nova tarefa")
     @PostMapping
     @ApiResponse(responseCode = "200", description = "Tarefa salva com sucesso")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     public ResponseEntity<TarefaDTOResponse> gravarTarefa(@RequestBody TarefaDTORequest dto,
                                                           @RequestHeader(value = "Authorization", required = false) String token) {
-       return ResponseEntity.ok(agendadorTarefaService.gravandoTarefaDTO(token, dto));
+        return ResponseEntity.ok(agendadorTarefaService.gravandoTarefaDTO(token, dto));
     }
 
 
     @GetMapping("/evento")
+    @Operation(summary = "Busca tarefas por Período", description = "Busca tarefas cadastradas por período")
     @ApiResponse(responseCode = "200", description = "Tarefas encontradas")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     @ApiResponse(responseCode = "401", description = "Usuário não autorizado")
@@ -44,8 +46,7 @@ public class AgendadorTarefaController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,
             @RequestHeader(value = "Authorization", required = false) String token) {
-        return ResponseEntity.ok(
-                agendadorTarefaService.buscarTarefasAgendadasPorPeriodo(dataInicial, dataFinal, token));
+        return ResponseEntity.ok(agendadorTarefaService.buscarTarefasAgendadasPorPeriodo(dataInicial, dataFinal, token));
     }
 
     @GetMapping
@@ -79,11 +80,11 @@ public class AgendadorTarefaController {
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     @ApiResponse(responseCode = "403", description = "Tarefa id não encontrada")
     @ApiResponse(responseCode = "401", description = "Usuário não autorizado")
-    public ResponseEntity<TarefaDTOResponse> atualizarStatusTarefa(
-                                                        @RequestParam("status") StatusNotificacaoEnum status,
-                                                        @RequestParam("id") String id,
-                                                        @RequestHeader(value = "Authorization", required = false) String token) {
-            return ResponseEntity.ok(agendadorTarefaService.alteraStatusTarefa(status, id, token));
+    public ResponseEntity<TarefaDTOResponse> atualizarStatusNotificacao(
+            @RequestParam("status") StatusNotificacaoEnum status,
+            @RequestParam("id") String id,
+            @RequestHeader(value = "Authorization", required = false) String token) {
+        return ResponseEntity.ok(agendadorTarefaService.atualizaStatusNotificacao(status, id, token));
     }
 
     @PutMapping
@@ -93,9 +94,9 @@ public class AgendadorTarefaController {
     @ApiResponse(responseCode = "403", description = "Tarefa id não encontrada")
     @ApiResponse(responseCode = "401", description = "Usuário não autorizado")
     public ResponseEntity<TarefaDTOResponse> updateTarefa(
-                                                @RequestBody TarefaDTORequest dto,
-                                                @RequestParam("id") String id,
-                                                @RequestHeader(value = "Authorization", required = false) String token){
+            @RequestBody TarefaDTORequest dto,
+            @RequestParam("id") String id,
+            @RequestHeader(value = "Authorization", required = false) String token) {
         return ResponseEntity.ok(
                 agendadorTarefaService.updateDeTarefas(dto, id, token));
     }

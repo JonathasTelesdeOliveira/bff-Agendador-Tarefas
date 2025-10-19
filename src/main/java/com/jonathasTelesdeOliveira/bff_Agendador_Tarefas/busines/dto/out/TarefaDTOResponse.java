@@ -1,7 +1,7 @@
 package com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.dto.out;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.infraestruture.Enums.StatusNotificacaoEnum;
+import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.Enums.StatusNotificacaoEnum;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 
 public class TarefaDTOResponse {
+
     private String id;
     private String nomeTarefa;
     private String descricao;
