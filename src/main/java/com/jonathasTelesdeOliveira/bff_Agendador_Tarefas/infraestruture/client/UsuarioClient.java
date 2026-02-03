@@ -8,7 +8,9 @@ import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.dto.in.UsuarioD
 import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.dto.out.EnderecoDTOResponse;
 import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.dto.out.TelefoneDTOResponse;
 import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.dto.out.UsuarioDTOResponse;
+import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.dto.out.ViaCepDTOResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "usuario", url = "${usuario.url}")
@@ -38,7 +40,7 @@ public interface UsuarioClient {
                                          @RequestHeader(value = "Authorization", required = false) String token);
 
     @PutMapping("/telefone")
-    public TelefoneDTOResponse atualizaTelefone(@RequestBody TelefoneDTORequest dto,
+    TelefoneDTOResponse atualizaTelefone(@RequestBody TelefoneDTORequest dto,
                                                 @RequestParam("id") Long id,
                                                 @RequestHeader(value = "Authorization", required = false) String token);
 
@@ -49,4 +51,10 @@ public interface UsuarioClient {
     @PostMapping("/telefones")
     TelefoneDTOResponse cadastraTelefone(@RequestBody TelefoneDTORequest dto,
                                          @RequestHeader(value = "Authorization", required = false) String token);
+
+    @GetMapping("/endereco/{cep}")
+    ViaCepDTOResponse buscaDadosDoCep(@PathVariable("cep") String cep);
+
+
+
 }
