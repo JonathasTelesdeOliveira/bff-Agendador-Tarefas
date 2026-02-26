@@ -1,7 +1,6 @@
 package com.jonathastelesoliviera.bffagendadortarefas.controler;
 
-
-import com.jonathastelesoliviera.bffagendadortarefas.busines.UsuarioService;
+import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.UsuarioService;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.EnderecoDTORequest;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.LoginRequestDTO;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.TelefoneDTORequest;
@@ -9,6 +8,7 @@ import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.UsuarioDTORe
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.out.EnderecoDTOResponse;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.out.TelefoneDTOResponse;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.out.UsuarioDTOResponse;
+import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.out.ViaCepDTOResponse;
 import com.jonathastelesoliviera.bffagendadortarefas.infraestruture.security.SecurityConfig;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -104,8 +104,8 @@ public class UsuarioController {
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     public ResponseEntity<TelefoneDTOResponse> atualizarTelefone(@RequestBody TelefoneDTORequest dto,
-                                                                  @RequestParam("id") Long id,
-                                                                   @RequestHeader(value = "Authorization", required = false) String token) {
+                                                                 @RequestParam("id") Long id,
+                                                                 @RequestHeader(value = "Authorization", required = false) String token) {
         return ResponseEntity.ok(usuarioService.atualizarDadosTelefone(id, dto, token));
     }
 
@@ -131,6 +131,16 @@ public class UsuarioController {
     public ResponseEntity<TelefoneDTOResponse> cadastraTelefone(@RequestBody TelefoneDTORequest dto,
                                                                 @RequestHeader(value = "Authorization", required = false) String token) {
         return ResponseEntity.ok(usuarioService.cadastroTelefone(token, dto));
+    }
+
+    @PostMapping("/endereco/{cep}")
+    @Operation(summary = "Busca endereco pelo cep",
+            description = "Busca dados endereco recebendo um cep")
+    @ApiResponse(responseCode = "200", description = "Dados enderecço retornado com sucesso")
+    @ApiResponse(responseCode = "400", description = "Cep inválido")
+    @ApiResponse(responseCode = "500", description = "Erro de servidor")
+    public ResponseEntity<ViaCepDTOResponse> buscarEnderecoPorCep(@PathVariable("cep")String cep) {
+        return ResponseEntity.ok(usuarioService.buscarEnderecoPorCep(cep));
     }
 
 }

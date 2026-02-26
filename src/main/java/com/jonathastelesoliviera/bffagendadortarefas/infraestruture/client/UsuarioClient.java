@@ -1,4 +1,4 @@
-package com.jonathastelesoliviera.bffagendadortarefas.infraestruture.client;
+package com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.infraestruture.client;
 
 
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.EnderecoDTORequest;
@@ -38,7 +38,7 @@ public interface UsuarioClient {
                                          @RequestHeader(value = "Authorization", required = false) String token);
 
     @PutMapping("/telefone")
-    public TelefoneDTOResponse atualizaTelefone(@RequestBody TelefoneDTORequest dto,
+    TelefoneDTOResponse atualizaTelefone(@RequestBody TelefoneDTORequest dto,
                                                 @RequestParam("id") Long id,
                                                 @RequestHeader(value = "Authorization", required = false) String token);
 

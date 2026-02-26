@@ -1,4 +1,5 @@
-package com.jonathastelesoliviera.bffagendadortarefas.busines;
+package com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines;
+
 
 
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.EnderecoDTORequest;
@@ -8,6 +9,7 @@ import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.UsuarioDTORe
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.out.EnderecoDTOResponse;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.out.TelefoneDTOResponse;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.out.UsuarioDTOResponse;
+import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.out.ViaCepDTOResponse;
 import com.jonathastelesoliviera.bffagendadortarefas.infraestruture.client.UsuarioClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -54,6 +56,10 @@ public class UsuarioService {
 
     public TelefoneDTOResponse cadastroTelefone(String token, TelefoneDTORequest dto) {
         return client.cadastraTelefone(dto, token);
+    }
+
+    public ViaCepDTOResponse buscarEnderecoPorCep(String cep) {
+        return client.buscaDadosDoCep(cep);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.jonathastelesoliviera.bffagendadortarefas.infraestruture.client.config;
+package com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.infraestruture.client.config;
 
 import com.jonathastelesoliviera.bffagendadortarefas.infraestruture.exceptions.BusinesException;
 import com.jonathastelesoliviera.bffagendadortarefas.infraestruture.exceptions.ConflictException;
