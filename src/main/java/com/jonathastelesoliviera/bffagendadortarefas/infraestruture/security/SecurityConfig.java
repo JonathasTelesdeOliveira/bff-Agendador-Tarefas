@@ -9,7 +9,5 @@ public class SecurityConfig {
 
     public static final String SECURITY_SCHEME = "bearerAuth";
 
-    private SecurityConfig() {
-        throw new IllegalStateException("Utility class");
-    }
+    private SecurityConfig() {throw new UnsupportedOperationException("Utility class");}
 }

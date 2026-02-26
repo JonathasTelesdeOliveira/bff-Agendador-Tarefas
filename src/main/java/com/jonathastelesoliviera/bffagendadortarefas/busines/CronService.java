@@ -41,7 +41,7 @@ public class CronService {
             emailService.enviaEmail(tarefa);
             log.info("Email enviado para o usuario " + tarefa.getEmailUsuario());
 
-            tarefaService.atualizaStatusNotificacao(StatusNotificacaoEnum.Notificado, tarefa.getId(), token);
+            tarefaService.atualizaStatusNotificacao(StatusNotificacaoEnum.NOTIFICADO, tarefa.getId(), token);
         });
         log.info("Finalizado a busca de notificação de tarefas");
     }
