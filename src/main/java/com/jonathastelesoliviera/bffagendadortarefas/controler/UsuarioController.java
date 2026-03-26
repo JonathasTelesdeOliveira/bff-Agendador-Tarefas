@@ -1,6 +1,6 @@
 package com.jonathastelesoliviera.bffagendadortarefas.controler;
 
-import com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines.UsuarioService;
+import com.jonathastelesoliviera.bffagendadortarefas.busines.UsuarioService;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.EnderecoDTORequest;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.LoginRequestDTO;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.TelefoneDTORequest;

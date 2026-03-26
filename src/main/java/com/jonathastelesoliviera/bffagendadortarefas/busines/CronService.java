@@ -1,8 +1,8 @@
 package com.jonathastelesoliviera.bffagendadortarefas.busines;
 
-import com.jonathastelesoliviera.bffagendadortarefas.busines.enums.StatusNotificacaoEnum;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.LoginRequestDTO;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.out.TarefaDTOResponse;
+import com.jonathastelesoliviera.bffagendadortarefas.busines.enums.StatusNotificacaoEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +20,7 @@ public class CronService {
     private final TarefaService tarefaService;
     private final EmailService emailService;
     private final UsuarioService usuarioService;
+
 
     @Value("${usuario.email}")
     private String email;
