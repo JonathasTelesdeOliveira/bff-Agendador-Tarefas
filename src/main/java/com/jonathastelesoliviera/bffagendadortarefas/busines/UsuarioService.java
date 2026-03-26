@@ -1,6 +1,4 @@
-package com.jonathasTelesdeOliveira.bff_Agendador_Tarefas.busines;
-
-
+package com.jonathastelesoliviera.bffagendadortarefas.busines;
 
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.EnderecoDTORequest;
 import com.jonathastelesoliviera.bffagendadortarefas.busines.dto.in.LoginRequestDTO;
