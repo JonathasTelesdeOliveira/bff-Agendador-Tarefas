@@ -55,7 +55,7 @@ public class UsuarioController {
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     public ResponseEntity<UsuarioDTOResponse> buscarUsuarioPorEmail(@RequestParam("email") String email,
-                                                                    @RequestHeader(value = "Authorization", required = false) String token) {
+                                                                    @RequestHeader(value = "Authorization") String token) {
         return ResponseEntity.ok(usuarioService.buscarPorEmail(email, token));
     }
 
@@ -83,7 +83,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.atualizarDadosUsuario(token, dto));
     }
 
-    @PutMapping("/endereco")
+    @PutMapping("/enderecos")
     @Operation(summary = "Atualiza Endereço de Usuários",
             description = "Atualiza endereço de usuário")
     @ApiResponse(responseCode = "200", description = "Endereço atualizado com sucesso")
@@ -129,11 +129,11 @@ public class UsuarioController {
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     public ResponseEntity<TelefoneDTOResponse> cadastraTelefone(@RequestBody TelefoneDTORequest dto,
-                                                                @RequestHeader(value = "Authorization", required = false) String token) {
+                                                                @RequestHeader(value = "Authorization") String token) {
         return ResponseEntity.ok(usuarioService.cadastroTelefone(token, dto));
     }
 
-    @PostMapping("/endereco/{cep}")
+    @GetMapping("/enderecos/{cep}")
     @Operation(summary = "Busca endereco pelo cep",
             description = "Busca dados endereco recebendo um cep")
     @ApiResponse(responseCode = "200", description = "Dados enderecço retornado com sucesso")

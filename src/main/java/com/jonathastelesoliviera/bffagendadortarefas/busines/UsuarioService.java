@@ -41,7 +41,9 @@ public class UsuarioService {
     }
 
     public EnderecoDTOResponse atualizarDadosEndereco(Long id, EnderecoDTORequest dto, String token) {
-       return client.atualizaEndereco(dto, id, token);
+        System.out.println("TOKEN NO BFF: " + token);
+
+        return client.atualizaEndereco(dto, id, token);
     }
 
     public TelefoneDTOResponse atualizarDadosTelefone(Long id, TelefoneDTORequest dto, String token) {

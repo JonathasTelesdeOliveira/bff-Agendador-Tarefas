@@ -33,7 +33,7 @@ public interface UsuarioClient {
     UsuarioDTOResponse atualizaDadosUsuario(@RequestBody UsuarioDTORequest dto,
                                             @RequestHeader(value = "Authorization", required = false) String token);
 
-    @PutMapping("/endereco")
+    @PutMapping("/enderecos")
     EnderecoDTOResponse atualizaEndereco(@RequestBody EnderecoDTORequest dto,
                                          @RequestParam("id") Long id,
                                          @RequestHeader(value = "Authorization", required = false) String token);
@@ -50,7 +50,8 @@ public interface UsuarioClient {
     @PostMapping("/telefones")
     TelefoneDTOResponse cadastraTelefone(@RequestBody TelefoneDTORequest dto,
                                          @RequestHeader(value = "Authorization", required = false) String token);
-    @GetMapping("/endereco/{cep}")
+
+    @GetMapping("/enderecos/{cep}")
     ViaCepDTOResponse buscaDadosDoCep(@PathVariable("cep") String cep);
 
 
